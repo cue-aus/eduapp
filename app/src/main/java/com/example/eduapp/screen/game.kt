@@ -1,5 +1,6 @@
 package com.example.eduapp.screen
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,7 +16,7 @@ import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameScreen(navController: NavHostController, modifier: Modifier = Modifier) {
+fun GameScreen(currentContext: Context, navController: NavHostController, modifier: Modifier = Modifier) {
     Scaffold(
         topBar = { TopAppBar(title = { Text("Game Screen") }) }
     ) {

@@ -40,11 +40,11 @@ fun AppNav(currentContext: Context) {
         //define the home route (landing)
         composable("landing"){ LandingScreen(navController) }
         //define the game route
-        composable("game") { GameScreen(navController) }
+        composable("game") { GameScreen(currentContext, navController) }
         //define the setting route
         composable("setting") { SettingScreen(navController) }
         //define the score route
-        composable("score") { ScoreScreen(navController) }
+        composable("score") { ScoreScreen(currentContext, navController) }
         //define the testDB route
         composable("testDB") { TestDBScreen(currentContext) }
 
