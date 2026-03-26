@@ -1,6 +1,7 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 package com.example.eduapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,26 +15,28 @@ import com.example.eduapp.screen.GameScreen
 import com.example.eduapp.screen.LandingScreen
 import com.example.eduapp.screen.ScoreScreen
 import com.example.eduapp.screen.SettingScreen
+import com.example.eduapp.screen.TestDBScreen
 import com.example.eduapp.ui.theme.EduAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val currentContext = applicationContext
         setContent {
             EduAppTheme {
-                AppNav()
+                AppNav(currentContext)
             }
         }
     }
 }
 
 @Composable
-fun AppNav() {
+fun AppNav(currentContext: Context) {
     //obtain navController
     val navController = rememberNavController()
     //set navHost and the routes
-    NavHost(navController, startDestination = "landing"){
+    NavHost(navController, startDestination = "testDB"){
         //define the home route (landing)
         composable("landing"){ LandingScreen(navController) }
         //define the game route
@@ -42,6 +45,8 @@ fun AppNav() {
         composable("setting") { SettingScreen(navController) }
         //define the score route
         composable("score") { ScoreScreen(navController) }
+        //define the testDB route
+        composable("testDB") { TestDBScreen(currentContext) }
 
     }
 
