@@ -15,21 +15,24 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.eduapp.helper.rememberAssetImage
+import com.example.eduapp.helper.getBitmapFromAssetsByIndex
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameScreen(currentContext: Context, navController: NavHostController, modifier: Modifier = Modifier) {
+
     val level = "1" //level: 1, 2, 3
-    val imageName = "level01_pic01_0.png"
+    val imageIndex = 0
     val questionNumber = 1
-    val assetPath = "$level/$imageName"
-    val imageBitmap = rememberAssetImage(currentContext, assetPath)
+    val imageBitmap = remember(level, imageIndex) {
+        getBitmapFromAssetsByIndex(currentContext, level, imageIndex)
+    }
     Scaffold(
         topBar = { TopAppBar(title = { Text("Game Screen") }) }
     ) {
@@ -47,14 +50,14 @@ fun GameScreen(currentContext: Context, navController: NavHostController, modifi
             if (imageBitmap != null) {
                 Image(
                     bitmap = imageBitmap,
-                    contentDescription = "Image from assets",
+                    contentDescription = "Image at index $imageIndex",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(400.dp),
                     contentScale = ContentScale.Fit
                 )
             } else {
-                Text(text = "Image not found at: assets/$assetPath")
+                Text("Image not found at index $imageIndex")
             }
             Button(onClick = {navController.navigate("score")})
             { Text("Go to Score") }

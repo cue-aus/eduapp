@@ -12,7 +12,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eduapp.screen.GameScreen
-import com.example.eduapp.screen.ImageDisplayScreen
 import com.example.eduapp.screen.LandingScreen
 import com.example.eduapp.screen.ScoreScreen
 import com.example.eduapp.screen.SettingScreen
@@ -48,15 +47,5 @@ fun AppNav(currentContext: Context) {
         composable("score") { ScoreScreen(currentContext, navController) }
         //define the testDB route
         composable("testDB") { TestDBScreen(currentContext) }
-        // define the imageDisplay route
-        composable("imageDisplay") {
-            ImageDisplayScreen(
-                context = currentContext,
-                folder = "1",
-                imageName = "level01_pic01_0.png"
-            )
-        }
-
     }
-
 }
